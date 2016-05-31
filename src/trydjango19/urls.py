@@ -28,7 +28,7 @@ url(r'^posts/$', 'posts.views.post_home' ,name='post_home'),
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^posts/', include('posts.urls'))
+    url(r'^posts/', include("posts.urls"))
 
     #url(r'^posts/$', 'posts.views.post_home' ,name='post_home'),
     #url(r'^posts/$', "<appname>.views.<function_name>"),
