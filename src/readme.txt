@@ -5,3 +5,4 @@
 15.  Template Context
 16.  QuerySet Basics
 17.  Get Item or 404 Query
+     - instance = get_object_or_404(Post, title="New Post")
