@@ -1,6 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.conf import settings
+from .models import Post
 
+
+#  Shell python manage.py Shell
+# from posts.models import Post
+#  Post.objects.all()
 
 # Create your views here.
 
@@ -9,15 +15,40 @@ def post_create(request):
 
 
 def post_detail(request):
-    return HttpResponse("<h1>detail</h1>")
+    context = {
+        "title": "Detail"
+    }
+    return render(request, "index.html", context)
 
 
 def post_list(request):
-    return HttpResponse("<h1>list</h1>")
+    print settings.BASE_DIR
+
+    queryset = Post.objects.all()
+
+    context = {
+        "title": "List",
+        "object_list":  queryset,
+    }
+
+    # if request.user.is_authenticated():
+    #     context = {
+    #         "title":  "My User List"
+    #     }
+    # else:
+    #     context ={
+    #         'name': "sahai",
+    #         'tel': "0809700084",
+    #         "title": "List",
+    #     }
+    return render(request, "index.html", context)
 
 
 def post_update(request):
-    return HttpResponse("<h1>update</h1>")
+    context = {
+        "title": "Update"
+    }
+    return render(request, "index.html", context)
 
 
 def post_delete(request):

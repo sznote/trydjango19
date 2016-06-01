@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}  </title>
+</head>
+<body>
+    <H1> {{ title }}  Product </H1>
+
+   {{ tel }} {{ name }}
+    {{ object_list }}
+    {% for obj in object_list %}
+    {{ obj.title }} <br/>
+    {{ obj.content }} <br/>
+    {{ obj.update }} <br/>
+    {{ obj.id }} <br/>
+    {% endfor %} <br/>
+
+
+</body>
+</html>
