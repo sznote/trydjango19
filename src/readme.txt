@@ -59,3 +59,5 @@
         - models.py
          def get_absolute_url(self):
          return reverse("posts:post_detail",kwargs={"id": self.id})
+
+20. Model From & Create View
