@@ -32,3 +32,4 @@
       post_detail(request,id=None)
         instance = get_object_or_404(Post, id=id)
 
+19. URL Links  & Get Absolute URL
