@@ -33,3 +33,29 @@
         instance = get_object_or_404(Post, id=id)
 
 19. URL Links  & Get Absolute URL
+    index.html
+     1.   <a href='/posts/{{ obj.id }}/'> {{ obj.title }} </a> <br/>
+     2.
+       - urls.py
+           url(r'^(?P<id>\d+)/$', post_detail, name='post_detail'),
+       - index.html
+           <a href='{% url "post_detail" id=obj.id %} '> {{ obj.title }} </a> <br/>
+
+      3.
+        - models.py
+          from django.core.urlresolvers import reverse
+
+          def get_absolute_url(self):
+              return reverse("post_detail",kwargs={"id": self.id})
+              #return "/posts/%s/" %(self.id)
+
+        - index.html
+           <a href='{{ obj.get_absolute_url }}' > {{ obj.title }} </a>
+
+      4
+        - urls.py on trydjang19
+          url(r'^posts/', include('posts.urls', namespace='posts')),
+
+        - models.py
+         def get_absolute_url(self):
+         return reverse("posts:post_detail",kwargs={"id": self.id})
