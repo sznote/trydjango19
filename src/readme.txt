@@ -23,4 +23,12 @@
      - instance = get_object_or_404(Post, title="New Post")
        instance = Post.objects.all()
 
-18.
+18.  Dynamic Url Routing & Patterns
+
+      -urls.py
+       url(r'^detail/(?P<id>\d+)/$', post_detail, name='post_detail'),
+
+      -views.py
+      post_detail(request,id=None)
+        instance = get_object_or_404(Post, id=id)
+
