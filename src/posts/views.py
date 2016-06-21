@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from .models import Post
-
+from .forms import PostForm
 
 #  Shell python manage.py Shell
 # from posts.models import Post
@@ -10,8 +10,24 @@ from .models import Post
 
 # Create your views here.
 
+
 def post_create(request):
-    return HttpResponse("<h1>created</h1>")
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        #print form.cleaned_data.get("title")
+        instance.save()
+
+    #if request.method == "POST":
+        #print request.POST
+        #print request.POST['content']
+        #print request.POST.get('content')
+
+    context  = {
+        "form": form,
+    }
+
+    return render(request, "post_form.html", context)
 
 
 def post_detail(request,id=None):
