@@ -61,3 +61,36 @@
          return reverse("posts:post_detail",kwargs={"id": self.id})
 
 20. Model From & Create View
+       - forms.py
+         from django import forms
+         from .models import Post
+
+         class PostForm(forms.ModelForm):
+            class Meta:
+                Model = Post
+                fields = [
+                    "title",
+                    "content"
+                ]
+
+       - view.py
+          def post_create(request):
+            form = PostForm(request.POST or none)
+            if form.is_valid():
+               instance = form.save(commit=False)
+               instance.save()
+             context = {
+                 "form":  form
+             }
+
+             return render(request, "post_form.html", context)
+
+       - post_form.html
+
+       <form method="POST" action="">
+           {% csrf_token %}
+           {{  form.as_p }}
+           <input type="submit">
+       </form>
+
+21.
