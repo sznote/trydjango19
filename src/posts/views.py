@@ -68,7 +68,7 @@ def post_list(request):
     #         'tel': "0809700084",
     #         "title": "List",
     #     }
-    return render(request, "index.html", context)
+    return render(request, "post_list.html", context)
 
 
 def post_update(request, id=None):

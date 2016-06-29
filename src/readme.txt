@@ -183,4 +183,28 @@ import  from django.shortcuts import redirect
     url(r'^(?P<id>\d+)/delete/$', post_delete),
 
 
-24.
+24.  Templates  & Inheritance
+
+    {% extended  base.html  %}  Call master class.
+
+     - base.html
+     [  {%block content %}{% endblock content %}  ]
+
+     - post_list.html
+      {% extends "base.html" %}
+      {% block content %}
+      // do something
+      {% endblock content %}
+
+      - views.py
+      def post_list(request):
+          print settings.BASE_DIR
+          queryset = Post.objects.all()
+
+          context = {
+            "title": "List",
+             "object_list":  queryset,
+          }
+          return render(request, "post_list.html", context)
+
+      // show base.html but rewrite block content //

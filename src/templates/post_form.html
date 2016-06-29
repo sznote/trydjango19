@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}  </title>
-</head>
-<body>
-    <H1> Form</H1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{  form.as_p }}
+{% extends "base.html" %}
 
-        <input type="submit">
-    </form>
+<!--  block contend send to base.html -->
+<!-- This is page parent
+   extend from  base.html -->
 
-</body>
-</html>
+{% block content  %}
+<!-- rewrite block  content -->
+
+<h1> Form</h1>
+
+  <form method="POST" action="">
+     {% csrf_token %}
+     {{  form.as_p }}
+     <input type="submit">
+  </form>
+
+{% endblock content %}
+
+{% block footer %}
+  </br>
+  Please Create you Post. <br>
+  {{ block.super }}
+   <!-- call  block  footer form master page -->
+{% endblock footer %}
