@@ -94,3 +94,93 @@
        </form>
 
 21. Instance Update View.
+
+import django  from  HttpResponseRedirect
+
+- views.py
+
+    def post_update(request,id=None):
+        instance  = get_object_or_404(Post,  id=id)
+        form  = PostForm(request.Post or None, instance=instance)
+        if form.in_valid():
+            instance  = form.save(commit=False)
+            instance.save()
+            return HttpResponseRedirect(instance.get_absolute_url())
+
+        context = {
+            "title": instance.title,
+             "instance": instance,
+             "from": from,
+             }
+         return  render(request, "post_form.html", context)
+
+- url.py
+       url(r'^(?P<id>)\d+)/edit/$', post_update, name='update'),
+
+22. Django Messages Framework
+
+- views.py
+    import django.contrib  import messages
+
+    def post_create(request):
+        form = PostForm(request.POST or None)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+*           messages.success(request, "Successfully Created")
+            return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+*           message.error(request, "Not Successfully Created")
+
+         context = {
+            "form": form,
+          }
+         return  render(request, "post_form.html", context)
+
+    def post_update(request, id=None):
+        form  = PostForm(request.POST or None, instance=instance )
+        if form.is_valid():
+            instance = form(commit=False)
+            instance.save()
+*           messages.success(request, "<a href='#'>Item</a> Saved", extra_tags='html_safe')
+            return HttpResponseRedirect(instance.get_absolute_url())
+        context =  {
+            "title": instance.tilte,
+            "instance": instance,
+            "form": form,
+        }
+        return  render(request, "post_form.html", context)
+
+- post_detail.html
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %}
+        class="{{ message.tags }}"
+        {% endif %} >
+            {% if "html_safe" in message.tags %}
+              {{ message|safe }}
+            {% else %}
+              {{ message }}
+            {% endif %}
+    </li>
+    {% endfor %}
+
+
+23. Delete View.
+
+import  from django.shortcuts import redirect
+- views.py
+    def post_delete(request,id=None):
+        instance = get_object_or_404(Post, id=id)
+        instance.delete()
+        messages.success(request. ""
+        return redirect("posts:list")
+
+- urls.py
+    url(r'^$', post_list, name='list'),
+    url(r'^(?P<id>\d+)/delete/$', post_delete),
+
+
+24.
