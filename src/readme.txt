@@ -208,3 +208,37 @@ import  from django.shortcuts import redirect
           return render(request, "post_list.html", context)
 
       // show base.html but rewrite block content //
+
+25.  Setup Static  Files - CSS & Javasc
+
+# (python): python  manage.py  collectstatic
+
+ * when create base.css on  /src/static and run command  python  manage.py collectstatic directory and file copy to   /static_cdn
+
+-- settings.py
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+
+    ]
+
+    #system  static file
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+-- urls.py
+
+    from django.conf.urls.static import static
+    from django.conf import settings
+
+    if settings.DEBUG:
+        urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+-- base.html
+     {% include "messages_display.html" %}
+     <link rel="stylesheet" href= '{% static  "css/base.css" %}' />
+
+-- /src/static/css/base.css
+    h1 {
+        color: #00db6e;
+    }
