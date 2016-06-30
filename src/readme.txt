@@ -237,8 +237,11 @@ import  from django.shortcuts import redirect
 -- base.html
      {% include "messages_display.html" %}
      <link rel="stylesheet" href= '{% static  "css/base.css" %}' />
+     <img src ='{% static "img/beach.jgp" %}'>
 
 -- /src/static/css/base.css
     h1 {
         color: #00db6e;
     }
+
+26. implement bootstrap.
