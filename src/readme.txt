@@ -245,3 +245,46 @@ import  from django.shortcuts import redirect
     }
 
 26. implement bootstrap.
+        http://getbootstrap.com/getting-started/
+
+--base.html
+        <head>
+             <!-- bootstrap -->
+            <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet">
+            <link href='{% static "css/bootstrap-theme.min.css" %}' rel="stylesheet">
+
+        </head>
+        <body>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src='{% static "css/bootstrap.min.js" %}'></script>
+
+--detail.html
+        <div class="col-sm-6 col-sm-offset-3">
+        <h1> {{ title }}  <small> {{ instance.timestamp }} </small> </h1>
+
+--list.html
+        <div class='col-sm-8 col-sm-offset-3'>
+
+    {% for obj in object_list %}
+    <
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3><a href='{{ obj.get_absolute_url }}'> {{ obj.title }} </a>
+                        <small> {{ obj.timestamp| timesince}} ago</small>
+                    </h3>
+                    <p> {{ obj.content | linebreaks | truncatechars:120 }} </p>
+                    <p><a href='{{ obj.get_absolute_url }}' class="btn btn-primary" role="button">View</a></p>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    {% endfor %}
+
+--form.html
+    <div class='col-sm-6 col-sm-offset-3'>
+
+27.
+

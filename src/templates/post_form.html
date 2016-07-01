@@ -7,19 +7,23 @@
 {% block content  %}
 <!-- rewrite block  content -->
 
-<h1> Form</h1>
+<div class='col-sm-6 col-sm-offset-3'>
+    <h1> Form</h1>
 
-  <form method="POST" action="">
-     {% csrf_token %}
-     {{  form.as_p }}
-     <input type="submit">
-  </form>
+    <form method="POST" action="">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class='btn btn-default'>
+        </div>
+    </form>
 
+</div>
 {% endblock content %}
 
 {% block footer %}
-  </br>
-  Please Create you Post. <br>
-  {{ block.super }}
-   <!-- call  block  footer form master page -->
+</br>
+Please Create you Post. <br>
+{{ block.super }}
+<!-- call  block  footer form master page -->
 {% endblock footer %}

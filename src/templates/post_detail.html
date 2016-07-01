@@ -2,7 +2,7 @@
 
 
 {% block head_title %}
-   {{ instance.title }} | {{  block.super }}
+{{ instance.title }} | {{  block.super }}
 {% endblock head_title %}
 
 {% block style %}
@@ -13,14 +13,16 @@ color: #777777;
 
 
 {% block content %}
-<h1> {{ title }} </h1>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1> {{ title }}  <small> {{ instance.timestamp }} </small> </h1>
 
-{{ instance.title }} <br/>
-{{ instance.content }} <br/>
-{{ instance.timestamp }} <br/>
-{{ instance.updated }} <br/>
-{{ instance.id }} <br/>
-{{ id }} <br/>
+    {{ instance.title }} <br/>
+    {{ instance.content | linebreaks }} <br/>
+    {{ instance.updated }} <br/>
+    {{ instance.id }} <br/>
+    {{ id }} <br/>
+
+</div>
 
 {% endblock content %}
 
