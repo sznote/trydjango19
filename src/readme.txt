@@ -341,3 +341,59 @@ def post_list(request):
     </div>
 
 28.  file Uploads and with File Field
+
+--models.py
+
+def upload_localtion(instance, filename):
+    #filebase, extension = filename.split(".")
+    #return "%s/%s" %(instance.id, instance.id, extension)
+    return "%s/%s" %(instance.id, filename)
+
+
+class Post(models.Model):
+
+ #  image = models.FileField(null=True, blank=True)
+image = models.ImageFiled(upload_to=upload_location, null=True, blank=True, width_field="width_field", height_field="height_field" )
+height_field = models.IntegerField(default=0)
+width_field = models.IntegerField(default=0)
+
+
+# python manage.py makemigrations
+# python manage.py migrate
+
+--settings.py
+ MEDIA_URL = '/media/'
+
+--urls.py
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+--from.py
+ fields = [
+    "title",
+    "content",
+    "image",
+    ]
+
+-- post_form.html
+<form method='POST' action='' enctype="multipart/form-data"> {% csrf_token %}
+
+-- views.py
+def post_create(request)
+   form = PostForm(request.POST or None, request.FILES or None )
+
+def post_update(request, id=None)
+   form = PostForm(request.POST or None , instance=instance, request.FILES or None)
+
+-- post_detail.html
+  {%block content %}
+   ..
+      {% if instance.image %}
+      <img src='{{  instance.image.url }} class='img-responsive' />
+      {% endif %}
+
+-- post_list.html
+      <div class="thumbnail">
+      {% if obj.image %}
+       <img src='{{ obj.image.url }} class='img-responsive' />
+       {% endif %}
+      </div>
