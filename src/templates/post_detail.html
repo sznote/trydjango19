@@ -15,6 +15,9 @@ color: #777777;
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3">
     <h1> {{ title }}  <small> {{ instance.timestamp }} </small> </h1>
+    {% if instance.image %}
+        <img src='{{   instance.image.url }}' class="img-responsive" />
+    {% endif %}
 
     {{ instance.title }} <br/>
     {{ instance.content | linebreaks }} <br/>
