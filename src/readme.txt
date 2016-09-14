@@ -397,4 +397,5 @@ def post_update(request, id=None)
        <img src='{{ obj.image.url }} class='img-responsive' />
        {% endif %}
       </div>
-29.
+      
+29. SlugField
